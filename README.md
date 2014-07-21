@@ -5,7 +5,7 @@ Track the referer path for visitors in silverstripe
 ## Installation
 
 * Save the folder referer-tracker in your site root
-* Or with composer run `composer require Cyber-Duck/referer-tracker`
+* Or add the folowing to your composer.json `"cyberduck/referer-tracker": "dev-master"`
 * Run a dev/build?flush=1
 * Add the following tracking code to the init function of your Page.php
 
