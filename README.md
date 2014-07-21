@@ -31,5 +31,5 @@ $this->refererTracker->retrieveExternal()
 
 Convenience method which returns a single, merged array of the above
 ```php
-$this->refererTracker->retrieveAll()`
+$this->refererTracker->retrieveAll()
 ```
