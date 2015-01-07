@@ -1,6 +1,7 @@
 {
     "name": "cyberduck/referer-tracker",
     "description": "Referer Tracker",
+    "type": "silverstripe-module",
     "keywords": ["silverstripe", "referer", "tracker", "path"],
     "homepage": "https://github.com/Cyber-Duck/Referer-Tracker",
     "type": "silverstripe-module",
