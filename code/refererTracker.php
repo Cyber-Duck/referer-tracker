@@ -238,4 +238,89 @@ class refererTracker
         return array_merge($this->retrieveExternal(), $this->retrieveInternal());
     }
 
+    public function getDefaultSiteUrl()
+    {
+        return rtrim(Director::absoluteBaseURL(), '/');
+    }
+
+    public function getIp()
+    {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+
+    /**
+     * Get the IP and referal list ready to be displayed in a SS template
+     *
+     * @param  $siteUrl
+     * @return ArrayData
+     */
+    public function getData($siteUrl = null)
+    {
+        if ($siteUrl == null) {
+            $siteUrl = $this->getDefaultSiteUrl();
+        }
+
+        $list = new ArrayList();
+
+        foreach($this->retrieveAll() as $item) {
+            $list->push(new ArrayData([
+                'Url'  => $siteUrl.$item['path'],
+                'Text' => $item['path'],
+                'Date' => date("d/m/Y H:i:s", strtotime($item['timestamp'])),
+            ]));
+        }
+
+        return new ArrayData([
+            'Ip'   => $this->getIp(),
+            'List' => $list,
+        ]);
+    }
+
+    /**
+     * Get the Ip and the referal list in a basic HTML format
+     *
+     * @param  string|null $siteUrl
+     * @param  string|null $template a custom template or null to use the default one
+     * @return string
+     */
+    public function getHtml($template = null, $siteUrl = null)
+    {
+        if ($siteUrl == null) {
+            $siteUrl = $this->getDefaultSiteUrl();
+        }
+
+        $referal = $this->getData($siteUrl);
+
+        if ($template != null) {
+            return $referal->renderWith($template);
+        }
+
+        ob_start();
+        require __DIR__ . '/template.php';
+        return ob_get_clean();
+    }
+
+    /**
+     * Get the referer list encoded in JSON format
+     *
+     * @return string
+     */
+    protected function getEncoded()
+    {
+        return json_encode($this->retrieveAll());
+    }
+
+    /**
+     * Append the IP and the Referer list in JSON format to an object
+     *
+     * @param  $object
+     */
+    public function appendToObject($object)
+    {
+        $object->Referer = $this->getEncoded();
+        $object->Ip = $this->getIp();
+
+        return $object;
+    }
+
 }
