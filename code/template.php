@@ -7,8 +7,8 @@
         <?php foreach ($referal->List as $row): ?>
         <li>
             <a href="<?php echo $row->Url ?>">
-                <?php echo $row->Text ?> (<?php echo $row->Date ?>)
-            </a>
+                <?php echo $row->Text ?>
+            </a> <small style="color:#666;">(<?php echo $row->Date ?>)</small>
         </li>
         <?php endforeach; ?>
     </ol>
