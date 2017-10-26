@@ -1,5 +1,7 @@
 <?php
 
+namespace CyberDuck\RefererTracker;
+
 /**
  * refererTracker
  *
@@ -23,7 +25,7 @@
  * @copyright 2012 Cyber-Duck Ltd. All rights reserved.
  *
  */
-class refererTracker
+class RefererTracker
 {
     private $_referer;
     private $_path;
