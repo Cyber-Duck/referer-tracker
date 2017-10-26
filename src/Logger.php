@@ -25,7 +25,7 @@ namespace CyberDuck\RefererTracker;
  * @copyright 2012 Cyber-Duck Ltd. All rights reserved.
  *
  */
-class RefererTracker
+class Logger
 {
     private $_referer;
     private $_path;
